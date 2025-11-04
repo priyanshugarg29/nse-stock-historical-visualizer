@@ -12,7 +12,7 @@ ALPHA_VANTAGE_API_KEY = "VLYQFAYWJDA79R9L"
 def fetch_alpha_vantage_data(symbol):
     ts = TimeSeries(key=ALPHA_VANTAGE_API_KEY, output_format='pandas')
     try:
-        # Use free daily endpoint instead of adjusted data
+        # Use free daily endpoint (not adjusted) to avoid premium error
         data, meta = ts.get_daily(symbol=symbol, outputsize='full')
         data.reset_index(inplace=True)
         data.rename(columns={'date': 'date', '4. close': 'close'}, inplace=True)
@@ -27,7 +27,7 @@ def process_data(df):
     df['year'] = df['date'].dt.year
     df['month'] = df['date'].dt.month
     df['day'] = df['date'].dt.day
-    grouped = df.groupby(['year', 'month', 'day'])['adjusted_close'].mean().reset_index()
+    grouped = df.groupby(['year', 'month', 'day'])['close'].mean().reset_index()  # use 'close' here
     return grouped
 
 # Plotting monthly data with multiple years
