@@ -12,12 +12,12 @@ ALPHA_VANTAGE_API_KEY = "VLYQFAYWJDA79R9L"
 def fetch_alpha_vantage_data(symbol):
     ts = TimeSeries(key=ALPHA_VANTAGE_API_KEY, output_format='pandas')
     try:
-        # Fetch daily adjusted data with max available history
-        data, meta = ts.get_daily_adjusted(symbol=symbol, outputsize='full')
+        # Use free daily endpoint instead of adjusted data
+        data, meta = ts.get_daily(symbol=symbol, outputsize='full')
         data.reset_index(inplace=True)
-        data.rename(columns={'date': 'date', '5. adjusted close': 'adjusted_close'}, inplace=True)
+        data.rename(columns={'date': 'date', '4. close': 'close'}, inplace=True)
         data['date'] = pd.to_datetime(data['date'])
-        return data[['date', 'adjusted_close']]
+        return data[['date', 'close']]
     except Exception as e:
         st.error(f"API call failed: {e}")
         return None
