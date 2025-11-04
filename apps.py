@@ -53,7 +53,7 @@ def plot_monthly_data(df, month):
 
 # Main Streamlit app interface
 def main():
-    st.title("NSE Stock Historical Visualizer (Alpha Vantage)")
+    st.title("BSE Stock Historical Visualizer (Alpha Vantage)")
     symbol = st.text_input("Enter BSE Stock Symbol (e.g., TCS, RELIANCE)").upper() + ".BSE"
     if st.button("Fetch and Visualize"):
         with st.spinner("Fetching data..."):
