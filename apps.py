@@ -48,7 +48,7 @@ def plot_monthly_data(df, month):
     plt.title(f'Average Daily Close Price - {month_name}')
     plt.xlabel('Day of Month')
     plt.ylabel('Price (INR)')
-    plt.legend()
+    plt.legend(loc = 'best')
     st.pyplot(plt)
 
 # Main Streamlit app interface
