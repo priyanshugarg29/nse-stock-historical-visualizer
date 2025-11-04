@@ -37,8 +37,8 @@ def plot_monthly_data(df, month):
     plt.figure(figsize=(10,6))
     for year in sorted(month_data['year'].unique()):
         yearly_data = month_data[month_data['year'] == year]
-        plt.plot(yearly_data['day'], yearly_data['adjusted_close'], label=str(year))
-    plt.title(f'Average Daily Adjusted Close Price - Month {month}')
+        plt.plot(yearly_data['day'], yearly_data['close'], label=str(year))
+    plt.title(f'Average Daily Close Price - Month {month}')
     plt.xlabel('Day of Month')
     plt.ylabel('Price (INR)')
     plt.legend()
